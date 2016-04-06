@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <body onload="links('Goldbach\'s Other Conjecture', '46', 'i')">
+    <script src="res/XMath.js"></script>
+    <script id="script">// javascript
+var t1 = performance.now();
+for(var i = 1, max = 1e4, squares = [], primes = XMath.eSieve(max); Math.pow(i, 2) <= max; squares.push(Math.pow(i, 2)), i++);
+for(var i = 9; i < max; i += 2)
+  if(!XMath.isPrime(i)) {
+    for(var j = 0, solution = false; !XMath.isPrime(i) && primes[j] < i; solution = squares.indexOf((i-primes[j])/2) >= 0 ? true : solution, j++);
+    if(!solution) break;
+  }
+var t2 = performance.now();
+</script>
+  ~Finds the smallest odd composite number that cannot be written as the sum of a prime and two times a square.~
+  #Uses memoization to cache some primes and squares.#
+  <script src="res/euler.js"></script>
+  </body>
+</html>

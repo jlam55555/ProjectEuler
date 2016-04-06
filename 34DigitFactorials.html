@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <body onload="links('Digit Factorials','34','sumFactorials')">
+    <script id="script">// javascript
+var t1 = performance.now();
+function factorial(num) {
+  if(num == 0) return 1;
+  for(var i = num-1, result = num; i > 0; result *= i, i--);
+  return result;
+}
+for(var i = 3, sumFactorials = 0; i < 1e6; sumFactorials += sum == i ? i : 0, i++)
+  for(var j = 0, sum = 0; j < i.toString().length; sum += factorial(parseInt(i.toString().charAt(j))), j++);
+var t2 = performance.now();
+</script>
+    ~Finds the sum of the numbers who are equal to the sums of the factorials of their digits~
+    #No notes#
+    <script src="res/euler.js"></script>
+  </body>
+</html>

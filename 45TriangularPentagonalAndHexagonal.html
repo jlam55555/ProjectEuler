@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <body onload="links('Triangular, Pentagonal, and Hexagonal', '45', 'triangular[i]')">
+    <script src="res/XMath.js"></script>
+    <script id="script">// javascript
+var t1 = performance.now();
+for(var max = 1e10, triangular = [40755], i = 285; triangular[triangular.length-1] < max; triangular.push(0.5*Math.pow(i, 2)+0.5*i), i++);
+for(var pentagonal = [40755], i = 165; pentagonal[pentagonal.length-1] < max; pentagonal.push(1.5*Math.pow(i, 2)-0.5*i), i++);
+for(var hexagonal = [40755], i = 143; hexagonal[hexagonal.length-1] < max; hexagonal.push(2*Math.pow(i, 2)-i), i++);
+for(var i = 1; !(pentagonal.indexOf(triangular[i]) > 0 && hexagonal.indexOf(triangular[i]) > 0) && i < triangular.length; i++);
+var t2 = performance.now();
+</script>
+  ~Finds the second triangular number that is also a pentagonal and hexagonal number.~
+  #Also takes a long time.#
+  <script src="res/euler.js"></script>
+  </body>
+</html>

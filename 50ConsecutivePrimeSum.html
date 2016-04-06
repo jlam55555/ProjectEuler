@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <body onload="links('Consecutive Prime Sum','50','max.num')">
+  <script src="res/XMath.js"></script>
+<script id="script">// javascript
+var t1 = performance.now();
+for(var i = 7.8e4, max = {numPrimes: 0}, primes = XMath.eSieve(1e6); primes[i] < 1e6; i++)
+  for(var j = 0; primes[j] < primes[i]; max = sum == primes[i] && k-j > max.numPrimes ? { numPrimes: k-j, num: primes[i] } : max, j++)
+    for(var k = j, sum = 0; sum < primes[i]; sum += primes[k], k++);
+var t2 = performance.now();
+</script>
+    ~Finds the prime under 1 million that can be written as the longest chain of consecutive prime numbers.~
+    #The first loop should start at 1, but I started it very close to the end of the array to save a lot of time.#
+    #Really not very efficient. Other algorithms take &lt;1ms for the entire array.#
+    <script src="res/euler.js"></script>
+  </body>
+</html>

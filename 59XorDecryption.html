@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <body onload="links('XOR Decryption', '59', 'asciiSum')">
+	<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+	<script src="res/XMath.js"></script>
+    <script id="script">// javascript
+var t1 = performance.now();
+var asciiSum = 0;
+$.ajax({
+	url: "res/cipher.json",
+	dataType: "json",
+	method: "get",
+	async: false,
+	success: function(data) {
+		var currentChar = 0;
+		outer: for(var i = 0; i < 26; i++) {
+			for(var j = 0; j < 26; j++) {
+				for(var k = 0; k < 26; k++) {
+					var currentString = "";
+					for(var l = 0; l < data.length; l++) {
+						var current = currentChar % 3 == 0 ? i+97 : currentChar % 3 == 1 ? j+97 : k+97;
+						currentString += String.fromCharCode(current ^ data[l]);
+						currentChar++;
+					}
+					if(currentString.substring(41, 50) == "beginning") {
+						for(var m = 0; m < currentString.length; m++)
+							asciiSum += currentString.charCodeAt(m);
+						break outer;
+					}
+				}
+			}
+		}
+	}
+});
+var t2 = performance.now();
+</script>
+  	~Finds the three-character cipher to decode this string, and then finds the sum of the ASCII codes.~
+  	#The word chosen to search for is "beginning," the first word I noticed emerging out of the dark when I searched for spaces.#
+	#The text is (excluding quotes): "(The Gospel of John, chapter 1) 1 In the beginning the Word already existed. He was with God, and he was God. 2 He was in the beginning with God. 3 He created everything there is. Nothing exists that he didn't make. 4 Life itself was in him, and this life gives light to everyone. 5 The light shines through the darkness, and the darkness can never extinguish it. 6 God sent John the Baptist 7 to tell everyone about the light so that everyone might believe because of his testimony. 8 John himself was not the light; he was only a witness to the light. 9 The one who is the true light, who gives light to everyone, was going to come into the world. 10 But although the world was made through him, the world didn't recognize him when he came. 11 Even in his own land and among his own people, he was not accepted. 12 But to all who believed him and accepted him, he gave the right to become children of God. 13 They are reborn! This is not a physical birth resulting from human passion or plan, this rebirth comes from God.14 So the Word became human and lived here on earth among us. He was full of unfailing love and faithfulness. And we have seen his glory, the glory of the only Son of the Father."#
+	<script src="res/euler.js"></script>
+  </body>
+</html>

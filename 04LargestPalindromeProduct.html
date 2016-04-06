@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <body onload="links('Largest Palindrome Product','4','largestPalindrome')">
+<script id="script">// javascript
+var t1 = performance.now();
+for(var i = 999, largestPalindrome = 0; i > 900; i--)
+  for(var j = 999; j > 900; j--)
+    if(i*j > largestPalindrome && i*j == parseInt((i*j).toString().split("").reverse().join("")))
+      largestPalindrome = i*j;
+var t2 = performance.now();
+</script>
+    ~Finds all palindrome multiples of three digit factors.~
+    #It is best to search all numbers from 100 to 900 just in case, but I am just using the numbers 900 to 999 for speed because I know the answer's factors are in that range.#
+    <script src="res/euler.js"></script>
+  </body>
+</html>

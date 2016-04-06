@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <body onload="links('Coin Sums','31','combos')">
+    <script id="script">// javascript
+var t1 = performance.now();
+var coins = [ 1, 2, 5, 10, 20, 50, 100, 200 ], findCombos = function(numLeft, largest) {
+  for(var i = 0, combos = 0; i <= largest; combos += coins[i] == numLeft ? 1 : coins[i] < numLeft ? findCombos(numLeft-coins[i], i) : 0, i++);
+  return combos;
+}, combos = findCombos(200, 7);
+var t2 = performance.now();
+</script>
+    ~Finds all the possible combinations of British coins to make up 2 pounds.~
+    #No notes#
+    <script src="res/euler.js"></script>
+  </body>
+</html>

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+  <body onload="links('Poker Hands', '55', 'wins')">
+	<script src="https://code.jquery.com/jquery-2.2.2.min.js" integrity="sha256-36cp2Co+/62rEAAYHLmRCPIych47CvdM+uTBJwSzWjI=" crossorigin="anonymous"></script>
+    <script id="script">// javascript
+var t1 = performance.now();
+var wins = 0;
+$.ajax({
+	url: "res/poker.json",
+	dataType: "json",
+	async: false,
+	method: "get",
+	success: function(data) {
+		function getRank(card) {
+			var rank = card.substr(0, 1);
+			switch(rank) {
+				case "2": case "3": case "4": case "5": case "6": case "7": case "8": case "9":
+					return parseInt(rank);
+				case "T":
+					return 10;
+				case "J":
+					return 11;
+				case "Q":
+					return 12;
+				case "K":
+					return 13;
+				case "A":
+					return 14;
+			}
+		}
+		function getSuit(card) {
+			return card.substr(1, 1);
+		}
+		function order(hand) {
+			hand.sort(function(a, b) {
+				return getRank(a) - getRank(b);
+			});
+			return hand;
+		}
+		function isStraight(hand) {
+			var lastRank = getRank(hand[0]);
+			for(var i = 1; i < hand.length; i++) {
+				if(getRank(hand[i]) != lastRank+++1)
+					return false;
+			}
+			return true;
+		}
+		function isFlush(hand) {
+			var suit = getSuit(hand[0]);
+			for(var i = 1; i < hand.length; i++) {
+				if(hand[i].substr(1, 1) != suit)
+					return false;
+			}
+			return true;
+		}
+		function isStraightFlush(hand) {
+			return isStraight(hand) && isFlush(hand);
+		}
+		function isRoyalFlush(hand) {
+			return isStraightFlush(hand) && getRank(hand[hand.length-1]) == 14;
+		}
+		function isFourOfAKind(hand) {
+			var start = getRank(hand[0]) == getRank(hand[1]) ? 0 : 1;
+			for(var i = start; i < start+4; i++) {
+				if(getRank(hand[i]) != getRank(hand[2])) {
+					return false;
+				}
+			}
+			return true;
+		}
+		function isFullHouse(hand) {
+			if((getRank(hand[0]) == getRank(hand[1]) && getRank(hand[1]) == getRank(hand[2]) && getRank(hand[3]) == getRank(hand[4])) || (getRank(hand[0]) == getRank(hand[1]) && getRank(hand[2]) == getRank(hand[3]) && getRank(hand[3]) == getRank(hand[4])))
+				return true;
+			return false;
+		}
+		function isThreeOfAKind(hand) {
+			if(
+				(getRank(hand[0]) == getRank(hand[1]) && getRank(hand[1]) == getRank(hand[2])) ||
+				(getRank(hand[1]) == getRank(hand[2]) && getRank(hand[2]) == getRank(hand[3])) ||
+				(getRank(hand[2]) == getRank(hand[3]) && getRank(hand[3]) == getRank(hand[4]))
+			)
+				return true;
+			return false;
+		}
+		function isTwoPairs(hand) {
+			if(
+				(getRank(hand[0]) == getRank(hand[1]) && getRank(hand[2]) == getRank(hand[3])) ||
+				(getRank(hand[1]) == getRank(hand[2]) && getRank(hand[3]) == getRank(hand[4])) ||
+				(getRank(hand[0]) == getRank(hand[1]) && getRank(hand[3]) == getRank(hand[4]))
+			)
+				return true;
+			return false;
+		}
+		function isOnePair(hand) {
+			if(getRank(hand[0]) == getRank(hand[1]) || getRank(hand[1]) == getRank(hand[2]) || getRank(hand[2]) == getRank(hand[3]) || getRank(hand[3]) == getRank(hand[4]))
+				return true;
+			return false;
+		}
+		function getHighCard(hand) {
+			return getRank(hand[hand.length-1]);
+		}
+		for(var i = 0; i < data.length; i++) {
+			var points = [];
+			for(var j = 0; j < 2; j++) {
+				var hand = order(data[i][j]);
+				points[j] =
+					isRoyalFlush(hand) ? 9 :
+					isStraightFlush(hand) ? 8 :
+					isFourOfAKind(hand) ? 7 :
+					isFullHouse(hand) ? 6 :
+					isFlush(hand) ? 5 :
+					isStraight(hand) ? 4 :
+					isThreeOfAKind(hand) ? 3 :
+					isTwoPairs(hand) ? 2 :
+					isOnePair(hand) ? 1 : 0;
+			}
+			if(points[0] > points[1])
+				wins++;
+			else if(points[0] == points[1]) {
+				if(points[0] == 8 || points[0] == 4 || points[0] == 0) {
+					if(getHighCard(order(data[i][0])) > getHighCard(order(data[i][1])))
+						wins++;
+				} else if(points[0] == 1 || points[0] == 2) {
+					var hand1 = order(data[i][0]);
+					var hand2 = order(data[i][1]);
+					var highCards = [];
+					for(var k = hand1.length-1; k >= 0; k--)
+						if(getRank(hand1[k]) == getRank(hand1[k-1])) {
+							highCards[0] = getRank(hand1[k]);
+							break;
+						}
+					for(var k = hand2.length-1; k >= 0; k--)
+						if(getRank(hand2[k]) == getRank(hand2[k-1])) {
+							highCards[1] = getRank(hand2[k]);
+							break;
+						}
+					if(highCards[0] > highCards[1])
+						wins++;
+					else if(highCards[0] == highCards[1]) {
+						for(var k = 0; k < hand1.length; k++) {
+							if(getRank(hand1[k]) == highCards[0]) {
+								hand1.splice(k, 1);
+								k--;
+							}
+						}
+						for(var k = 0; k < hand2.length; k++) {
+							if(getRank(hand2[k]) == highCards[0]) {
+								hand2.splice(k, 1);
+								k--;
+							}
+						}
+						if(getHighCard(hand1) > getHighCard(hand2))
+							wins++;
+					}
+				} else if(points[0] == 6 || points[0] == 3) {
+					var hand1 = order(data[i][0]);
+					var hand2 = order(data[i][1]);
+					var highCards = [];
+					for(var k = hand1.length-1; k >= 0; k--) {
+						if(getRank(hand1[k]) == getRank(hand1[k-1]) && getRank(hand1[k-1]) == getRank(hand1[k-2])) {
+							highCards[0] = getRank(hand1[k]);
+							break;
+						}
+					}
+					for(var k = hand2.length-1; k >= 0; k--) {
+						if(getRank(hand2[k]) == getRank(hand2[k-1]) && getRank(hand2[k-1]) == getRank(hand2[k-2])) {
+							highCards[1] = getRank(hand2[k]);
+							break;
+						}
+					}
+					if(highCards[0] > highCards[1])
+						wins++;
+				}
+			}
+		}
+	}
+});
+var t2 = performance.now();
+</script>
+	~Finds number of wins out of 1000 random hands.~
+  	#A really long and messy script.#
+	#I've never played poker.#
+	<script src="res/euler.js"></script>
+  </body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <body onload="links('Substring Divisibility', '43', 'sum')">
+    <script src="res/XMath.js"></script>
+    <script id="script">// javascript
+var t1 = performance.now();
+for(var i = 0, combos = [[]], primes = XMath.eSieve(18); i < primes.length; combos.push([]), i++)
+  for(var j = 1; j <= 999; j % primes[i] == 0 ? combos[i].push(XMath.pad(j, "0", 3)) : {}, j++);
+for(var i = 0, sum = 0, possibilities = XMath.merge(XMath.merge(XMath.merge(XMath.merge(combos[0], combos[1], 2), combos[2], 2), XMath.merge(combos[3], combos[4], 2), 2), XMath.merge(combos[5], combos[6], 2), 2); i < possibilities.length; i++)
+  for(var j = 0, current = j + possibilities[0]; j < 10; current = j + possibilities[i], sum += current.split("").sort().join("") == "0123456789" ? parseInt(current) : 0, j++);
+var t2 = performance.now();
+</script>
+  ~Finds all the numbers that fit the pattern specified in the <a href="https://projecteuler.net/problem=43">question</a>.~
+  #Recursively merges all possibilities together.#
+  #New functions <code>merge()</code> and <code>pad()</code> now exist the XMath library.#
+  <script src="res/euler.js"></script>
+  </body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <body onload="links('Prime Permutations','49','num')">
+  <script src="res/XMath.js"></script>
+<script id="script">// javascript
+var t1 = performance.now();
+outer: for(var i = 1; i < 1e4-3; i++)
+  for(var j = 3330; j < 3331; j++)
+    if(i.toString().split("").sort().join("") == (i+j).toString().split("").sort().join("") && (i+j).toString().split("").sort().join("") == (i+j*2).toString().split("").sort().join("") && XMath.isPrime(i) && XMath.isPrime(i+j) && XMath.isPrime(i+j*2) && i != 1487) {
+      num = "" + i + (i+j) + (i+j*2);
+      break outer;
+    }
+var t2 = performance.now();
+</script>
+    ~Concatenates the second set of three four-digit numbers in an arithmetic progression who are all primes and whose digits are permutations of each other.~
+    #The second loop was originally <code>for(var j = 1; j <= Math.floor((1e4-1-1e3)/2); j++)</code> to check all intervals from 1 to <code>(9999-the first number)/2</code> (rounded down). After knowing that the answer has a difference of 3330, I only left this in because the other solution takes too long.#
+    <script src="res/euler.js"></script>
+  </body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <body onload="links('Factorial Digit Sum', '20', 'sum')">
+    <script src="res/bignumber.min.js"></script>
+    <script id="script">// javascript
+var t1 = performance.now();
+BigNumber.config({EXPONENTIAL_AT: 500});
+function factorial(num) {
+  for(var i = num-1, result = new BigNumber(num); i > 0; i--)
+    result = result.mul(i);
+  return result;
+};
+var product = factorial(100);
+for(var i = 0, sum = 0; i < product.toString().length; i++)
+  sum += parseInt(product.toString().charAt(i));
+var t2 = performance.now();
+</script>
+  ~Calculates 100! and sums its digits~
+  #<code>BigNumber</code> library courtesy of <a href="https://github.com/MikeMcl/bignumber.js/">https://github.com/MikeMcl/bignumber.js/</a>.#
+  <script src="res/euler.js"></script>
+  </body>
+</html>

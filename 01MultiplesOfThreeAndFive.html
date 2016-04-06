@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+  <body onload="links('Multiples of Three and Five','1','sum')">
+<script id="script">// javascript
+var t1 = performance.now();
+for(var sum = 0, i = 0; i < 1000; sum += i % 3 == 0 || i % 5 == 0 ? i : 0, i++);
+var t2 = performance.now();
+</script>
+    ~Simply loops through each whole numbers up to 1000 and finds those that are evenly divisible by 3 and 5.~
+    #No notes#
+    <script src="res/euler.js"></script>
+  </body>
+</html>

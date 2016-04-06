@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <body onload="links('Square Root Convergents', '57', 'count')">
+	<script src="res/bignumber.min.js"></script>
+    <script id="script">// javascript
+var t1 = performance.now();
+BigNumber.config({EXPONENTIAL_AT:500});
+var solve = function(exp) {
+	while((match = /(\d+)\+(\d+)\/(\d+)/.exec(exp)) != null)
+		index = match.index, length = match[0].length, num1 = new BigNumber(match[1]), num2 = new BigNumber(match[2]), num3 = new BigNumber(match[3]), num1 = num1.mul(num3), num1 = num1.add(num2), exp = exp.slice(0, index) + num1.toString() + "/" + num3.toString() + exp.slice(index+length), exp = exp.replace(/1\/\((\d+)\/(\d+)\)/, "$2/$1");
+	return exp;
+};
+for(var i = 0, exp = "1+1/2", count = 0, fraction = solve(exp); i < 1000; fraction = solve(exp), count += fraction.split("/")[0].toString().length > fraction.split("/")[1].toString().length ? 1 : 0, exp = exp.replace(/1\/2/, "1/(2+1/2)"), i++);
+var t2 = performance.now();
+</script>
+  	~Description~
+  	#<code>BigNumber</code> library courtesy of <a href="https://github.com/MikeMcl/bignumber.js/">https://github.com/MikeMcl/bignumber.js/</a>.#
+	<script src="res/euler.js"></script>
+  </body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <body onload="links('Quadratic Primes','27','max.a*max.b')">
+    <script id="script">// javascript
+var t1 = performance.now();
+function isPrime(n) {
+  if(n < 2)
+    return false;
+  for(var i = 2; i <= Math.sqrt(n); i++)
+    if(n % i == 0)
+      return false;
+  return true;
+}
+function formula(a, b, n) {
+  return Math.pow(n, 2) + a * n + b;
+}
+for(var i = -999, max = { numPrimes: 0 }; i < 1000; i++)
+  for(var j = -999; j < 1000; max = (count > max.numPrimes) ? { numPrimes: count, a: i, b: j } : max, j++)
+    for(var n = 0, count = 0; isPrime(formula(i, j, n)); n++, count++);
+var t2 = performance.now();
+</script>
+    ~Finds the product of the <code>a</code> and <code>b</code> values in the quadratic <code>n<sup>2</sup> + an + b</code> that produces the longest line of primes, starting with <code>n</code> = 0.~
+    #No notes#
+    <script src="res/euler.js"></script>
+  </body>
+</html>

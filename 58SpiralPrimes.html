@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <body onload="links('Spiral Primes', '58', 'i')">
+	<script src="res/XMath.js"></script>
+    <script id="script">// javascript
+var t1 = performance.now();
+for(var i = 3, numPrimes = 0, numTotal = 1; ; i+=2) {
+	numTotal += 4;
+	numPrimes += XMath.isPrime(Math.pow(i,2)-(i-1)) ? 1 : 0;
+	numPrimes += XMath.isPrime(Math.pow(i,2)-2*(i-1)) ? 1 : 0;
+	numPrimes += XMath.isPrime(Math.pow(i,2)-3*(i-1)) ? 1 : 0;
+	if(numPrimes * 10 < numTotal)
+		break;
+}
+var t2 = performance.now();
+</script>
+  	~Finds the first length of a spiral of numbers in which the ratio of the number of primes in the diagonals to the total number of numbers in the diagonals is less than 1:10.~
+  	#No notes#
+	<script src="res/euler.js"></script>
+  </body>
+</html>

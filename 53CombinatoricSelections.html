@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <body onload="links('Combinatoric Selections','53','numMilCombos')">
+  <script src="res/XMath.js"></script>
+<script id="script">// javascript
+var t1 = performance.now();
+for(var i = 23, numMilCombos = 0; i <= 100; i++) 
+	for(var j = 3; j <= i; numMilCombos += XMath.factorial(i)/(XMath.factorial(j)*XMath.factorial(i-j))> 1e6 ? 1 : 0, j++); 
+var t2 = performance.now();
+</script>
+	~This finds the number of <code><sup>n</sup>K<sub>r</sub></code> values have over a million combinations where n is less than or equal to 100.~
+    #No notes#
+    <script src="res/euler.js"></script>
+  </body>
+</html>

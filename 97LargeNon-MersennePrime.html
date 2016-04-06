@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <body onload="links('Large Non-Mersenne Prime', '97', 'lastDigits')">
+	<script src="res/XMath.js"></script>
+	<script src="res/bignumber.min.js"></script>
+    <script id="script">// javascript
+var t1 = performance.now();
+BigNumber.config({EXPONENTIAL_AT:2357207,POW_PRECISION:2357207});
+var largeNumber = 1;
+for(var i = 0; i < 7830457; i++) {
+	var newNumber = new BigNumber(largeNumber).mul(2).toString();
+	largeNumber = newNumber.substr(newNumber.length-10 < 0 ? 0 : newNumber.length-10,10);
+}
+largeNumber = new BigNumber(largeNumber).mul(28433).add(1).toString();
+var lastDigits = largeNumber.substr(largeNumber.length-10,10);
+var t2 = performance.now();
+</script>
+~Finds the last ten digits of the large non-mersenne prime <code>2<sup>7830457</sup>*28433+1</code>.~
+  	#No notes#
+	<script src="res/euler.js"></script>
+  </body>
+</html>

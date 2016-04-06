@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <body onload="links('Longest Collatz Sequence','14','maxNum')">
+    <script id="script">// javascript
+var t1 = performance.now();
+for(var i = 8e5, maxCount = 0, maxNum = 0; i < 1e6; i++) {
+  for(var j = i, count = 1; j != 1; count++, j = (j % 2 == 0) ? j/2 : 3*j+1);
+  if(count > maxCount)
+    maxCount = count, maxNum = i;
+}
+var t2 = performance.now();
+</script>
+    ~Tries every number's Collatz sequence under 1 million and returns the longest.~
+    #For time's sake, I started from 800,000 instead of 1, because I know that the answer is over 800,000.#
+    <script src="res/euler.js"></script>
+  </body>
+</html>

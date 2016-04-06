@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <body onload="links('Double-Base Palidromes', '36', 'sum')">
+    <script src="res/XMath.js"></script>
+    <script id="script">// javascript
+var t1 = performance.now();
+for(var i = 1, sum = 0, binaryString = "0"; i < 1e6; binaryString = i.toString(2), string = i.toString(), sum += XMath.isPalindrome(binaryString) && XMath.isPalindrome(string) && binaryString.substring(0, 1) != 0 && string.substring(0, 1) != 0 ? i : 0, i++);
+var t2 = performance.now();
+</script>
+  ~Finds the sum of all the numbers under 1,000,000 whose decimal (base 10) and binary (base 2) representations are both palindromes and do not have a leading 0.~
+  #No notes#
+  <script src="res/euler.js"></script>
+  </body>
+</html>

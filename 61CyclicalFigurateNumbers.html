@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <body onload="links('Cyclical Figurate Numbers', '61', 'sum')">
+	<script src="res/XMath.js"></script>
+    <script id="script">// javascript
+var t1 = performance.now();
+var sum = 0, triangularNums = [], figurateNums = [], formulae = ["j*(j+1)/2","j*j","j*(3*j-1)/2","j*(2*j-1)","j*(5*j-3)/2","j*(3*j-2)"];
+for(var i = 0; i < 6; i++)
+	for(var j = 0; eval(formulae[i]) < 10000; j++)
+		if(eval(formulae[i]) >= 1000 && eval(formulae[i]).toString().substring(2, 3) != "0")
+			if(i == 0)
+				triangularNums.push({num:eval(formulae[0]),formula:0});
+			else
+				figurateNums.push({num:eval(formulae[i]),formula:i});
+function getFormulae(nums) {
+	for(var i = 0, formulae = [nums[0].formula]; i < nums.length; formulae.push(nums[i].formula), i++);
+	return formulae;
+}
+function getCyclical(nums) {
+	for(var i = 0; i < figurateNums.length; i++)
+		if(getFormulae(nums).indexOf(figurateNums[i].formula) == -1 && nums[nums.length-1].num.toString().substring(2, 4) == figurateNums[i].num.toString().substring(0, 2)) {	
+			if(nums.push(figurateNums[i]) == 6) {
+				if(nums[nums.length-1].num.toString().substring(2, 4) == nums[0].num.toString().substring(0, 2))
+					for(var j = 0; j < 6; j++)
+						sum += nums[j].num;
+				nums.pop();
+				return;
+			}
+			getCyclical(nums);
+			nums.pop();
+		}
+}
+for(var i = 0; i < triangularNums.length; i++)
+	getCyclical([triangularNums[i]]);
+var t2 = performance.now();
+</script>
+  	~Finds the sum of the set of six cyclic figurate four-digit numbers.~
+  	#No notes#
+	<script src="res/euler.js"></script>
+  </body>
+</html>

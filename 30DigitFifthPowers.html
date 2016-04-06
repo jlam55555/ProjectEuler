@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <body onload="links('Digit Fifth Powers','30','largeSum')">
+    <script id="script">// javascript
+var t1 = performance.now();
+for(var i = 2, largeSum = 0; i < 1e6; largeSum += sum == i ? sum : 0, i++)
+  for(var j = 0, numString = i.toString(), sum = 0; j < numString.length; j++)
+    sum += Math.pow(parseInt(numString.charAt(j)), 5);
+var t2 = performance.now();
+</script>
+    ~Finds the sum of all numbers who are equal to the sum of their digits to their fifth power.~
+    #No notes#
+    <script src="res/euler.js"></script>
+  </body>
+</html>

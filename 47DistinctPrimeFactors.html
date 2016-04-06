@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <body onload="links('Distinct Prime Factors','47','i-numFactors')">
+  <script src="res/XMath.js"></script>
+<script id="script">// javascript
+var t1 = performance.now();
+var factor = function(num) {
+  for(var i = 2, factors = []; i <= num; i++)
+    if(num % i == 0)
+      num /= i,
+      factors[i] = factors[i--]+1 || 1;
+  return Object.keys(factors).length == numFactors;
+};
+for(var i = 0, numFactors = 4, max = 1e6, consecutive = 0; consecutive != numFactors && i < max; consecutive = factor(i) ? consecutive + 1 : 0, i++);
+var t2 = performance.now();
+</script>
+    ~Finds the first of the four consecutive four-digit whole numbers each with four factors.~
+    #This <code>factor()</code> function has been modified to a more generic version that is now included in the XMath library.#
+    <script src="res/euler.js"></script>
+  </body>
+</html>

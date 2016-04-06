@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <body onload="links('Counting Sundays','19','count')">
+    <script id="script">// javascript
+var t1 = performance.now();
+var months = { 0: 31, 1: 28, 2: 31, 3: 30, 4: 31, 5: 30, 6: 31, 7: 31, 8: 30, 9: 31, 10: 30, 11: 31 };
+for(var m = 0, dom = 0, dow = 1, y = 1900, count = 0; y < 2001; dow = dow == 6 ? 0 : dow+1) {
+  if(y >= 1901 && dom == 0 && dow == 0)
+    count++;
+  if(dom >= months[m]-1) {
+    if(m == 1 && dom == 27 && ((y % 4 == 0 && y % 100 != 0) || (y % 400 == 0))) {
+      dom++;
+      continue;
+    }
+    dom = 0;
+    if(m == 11) {
+      m = 0;
+      y++;
+    } else
+      m++;
+  } else 
+    dom++;
+}
+var t2 = performance.now();
+</script>
+    ~Goes through every day from 1/1/1900 to 12/31/2000, and counts occurrences of Sundays on the first of each month from 1/1/190<strong>1</strong> to 12/31/2000.~
+    #No notes#
+    <script src="res/euler.js"></script>
+  </body>
+</html>

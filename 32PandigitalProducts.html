@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <body onload="links('Pandigital Products','32','sum')">
+    <script id="script">// javascript
+var t1 = performance.now();
+for(var i = 0, sum = 0, products = []; i < 100; i++)
+  for(var j = 100; j < 10000; j++)
+    if(!(products.indexOf(i*j) >= 0) && (i.toString() + j.toString() + (i*j).toString()).split("").sort().join("") == "123456789")
+      sum += i*j, products.push(i*j);
+var t2 = performance.now();
+</script>
+    ~Finds the sum of all products whose identity is nine-digits long and pandigital (contains 1, 2, 3, 4, 5, 6, 7, 8, 9 once and only once).~
+    #The first loop goes from 0 to 99 and the second from 100 to 9999 because only a one digit factor times a four digit factor can equal a five digit number (total of nine digits) and the same with two and three digit factors.#
+    <script src="res/euler.js"></script>
+  </body>
+</html>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <body onload="links('Sum Square Difference','6','difference')">
+<script id="script">// javascript
+var t1 = performance.now();
+for(var i = 1, sumSquares = 0, sum = 0; i <= 100; i++)
+  sumSquares += Math.pow(i, 2),
+  sum += i;
+var difference = Math.abs(sumSquares - Math.pow(sum, 2));
+var t2 = performance.now();
+</script>
+    ~Finds the difference between the sum of the squares and the square of the sum of the integers from 1 to 100.~
+    #No notes.#
+    <script src="res/euler.js"></script>
+  </body>
+</html>

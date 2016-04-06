@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <body onload="links('1000-Digit Fibonnacci Number','25','count')">
+    <script src="res/bignumber.min.js"></script>
+    <script id="script">// javascript
+var t1 = performance.now();
+BigNumber.config({EXPONENTIAL_AT: 1000});
+for(var count = 2, last = new BigNumber(1), current = new BigNumber(1), sum = new BigNumber(1), tmp = new BigNumber(0); current.toString().length < 1000; count++, tmp = current, current = current.add(last), last = tmp);
+var t2 = performance.now();
+</script>
+    ~Finds the first 1000-digit fibonacci sequence and returns its index.~
+    #<code>BigNumber</code> library courtesy of <a href="https://github.com/MikeMcl/bignumber.js/">https://github.com/MikeMcl/bignumber.js/</a>.#
+    <script src="res/euler.js"></script>
+  </body>
+</html>

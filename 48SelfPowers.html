@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <body onload="links('Large Sum','48','sum.toString().substring(sum.toString().length-10)')">
+    <script src="res/bignumber.min.js"></script>
+    <script id="script">// javascript
+var t1 = performance.now();
+BigNumber.config({EXPONENTIAL_AT: 1e4, POW_PRECISION: 1e4});
+for(var i = 1, sum = new BigNumber(0); i <= 1000; sum = sum.add(new BigNumber(i).pow(i)), i++);
+var t2 = performance.now();
+</script>
+    ~Finds the last ten digits of the sum <code>1<sup>1</sup> + 2<sup>2</sup> + 3<sup>3</sup> &hellip; 1000<sup>1000</sup></code>.~
+    #<code>BigNumber</code> library courtesy of <a href="https://github.com/MikeMcl/bignumber.js/">https://github.com/MikeMcl/bignumber.js/</a>.#
+    #I had to mess around with BigNumber's configurations in order to get the correct numbers. The defaults are not high enough.#
+    <script src="res/euler.js"></script>
+  </body>
+</html>

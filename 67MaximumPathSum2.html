@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <body onload="links('Maximum Path Sum 2', '67', 'data[0][0]')">
+	<script src="res/XMath.js"></script>
+	<script src="https://code.jquery.com/jquery-2.2.2.min.js" integrity="sha256-36cp2Co+/62rEAAYHLmRCPIych47CvdM+uTBJwSzWjI=" crossorigin="anonymous"></script>
+    <script id="script">// javascript
+var t1 = performance.now();
+var data;
+$.ajax({
+	url: "res/maxPathSum.json",
+	dataType: "json",
+	async: false,
+	method: "get",
+	success: function(response) {
+		data = response;
+		for(var i = 98; i >= 0; i--)
+			for(var j = 0; j <= i; data[i][j] += Math.max(data[i+1][j], data[i+1][j+1]), j++);
+	}
+});
+var t2 = performance.now();
+</script>
+	~Collapses the pyramid like in <a href="18MaximumPathSum1.html">Project Euler Question 18</a> to get the maximum path sum.~
+  	#Original input file formatted to become a (valid) JSON file.#
+	#Real program is only 2 lines! Cool!#
+	<script src="res/euler.js"></script>
+  </body>
+</html>

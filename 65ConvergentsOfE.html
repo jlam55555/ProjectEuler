@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <body onload="links('Convergents of e', '65', 'sum')">
+	<script src="res/bignumber.min.js"></script>
+	<script src="res/XMath.js"></script>
+	<script src="res/XBigFraction.js"></script>
+    <script id="script">// javascript
+var t1 = performance.now();
+BigNumber.config({EXPONENTIAL_AT:500});
+for(var i = Math.floor(100/3), e = new XBigFraction(0, 1); i > 0; e = new XBigFraction(1,1).divide(new XBigFraction(1,1).add(new XBigFraction(1,1).divide(new XBigFraction(2*i, 1).add(new XBigFraction(1,1).divide(new XBigFraction(1,1).add(e)).reduce())).reduce())).reduce(), i--);
+for(var i = 0, sum = 0, numerator = e.add(new XBigFraction(2, 1)).numerator.toString().split(""); i < numerator.length; sum += parseInt(numerator[i]), i++);
+var t2 = performance.now();
+</script>
+~Finds the numerator of the (simplified) 100th convergent of <code><em>e</em></code> (using the formula <code><em>e</em> = [2; 1,2,1, 1,4,1, 1,6,1 , ... , 1,2k,1, ...]</code>)~
+		#Uses my new library <a href="res/XBigFraction.js">XBigFraction.js</a>. It can handle large fractions (needs to include <a href="res/bignumber.min.js">bignumber.min.js</a> first, however). I also made a simpler version at <a href="res/XFraction.js">XFraction.js</a>.#
+	<script src="res/euler.js"></script>
+  </body>
+</html>

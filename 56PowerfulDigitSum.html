@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <body onload="links('Powerful Digit Sum', '56', 'max')">
+    <script src="res/bignumber.min.js"></script>
+    <script id="script">// javascript
+var t1 = performance.now();
+BigNumber.config({EXPONENTIAL_AT: 200, POW_PRECISION: 200});
+var digitalSum = function(n) { for(var i = 0, numString = n.toString(), sum = 0; i < numString.length; sum += parseInt(numString.substring(i, i+1)), i++);	return sum; };
+for(var i = 1, max = 0; i < 100; i++)
+	for(var j = 1; j < 100; max = digitalSum(new BigNumber(i).pow(j)) > max ? digitalSum(new BigNumber(i).pow(j)) : max, j++);
+var t2 = performance.now();
+</script>
+	~Finds the largest "digital sum" of any number <code>a<sup>b</sup></code>, where <code>a</code> and <code>b</code> are natural numbers under 100.~
+  #<code>BigNumber</code> library courtesy of <a href="https://github.com/MikeMcl/bignumber.js/">https://github.com/MikeMcl/bignumber.js/</a>.#
+  <script src="res/euler.js"></script>
+  </body>
+</html>

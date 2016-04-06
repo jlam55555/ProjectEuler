@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <body onload="links('Names Scores','22','sum')">
+    <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+    <script id="script">// javascript
+var t1 = performance.now();
+var sum = 0;
+$.ajax({
+  url: "res/names.json",
+  dataType: "json",
+  async: false,
+  success: function(data) {
+    for(var i = 0, sortedNames = data.sort(), wordSum = 0; i < sortedNames.length; sum += wordSum * (i+1), i++, wordSum = 0)
+      for(var j = 0; j < sortedNames[i].length; wordSum += sortedNames[i].charCodeAt(j) - 64, j++);
+  }
+});
+var t2 = performance.now();
+</script>
+    ~Loads the file <code><a href="res/names.json">res/names.json</a></code> and sums the scores of each word. The score of a word is its index (when the words are sorted alphabetically) multiplied by the sum of the "letter scores" (e.g. "A" = 1, "B" = 2, "C" = 3, etc.) of the word.~
+    #Uses jQuery to load the file with a synchronous XMLHttpRequest.#
+    #The file is slightly modified: I have added an opening square bracket (<code>[</code>) at the beginning and a closing one (<code>]</code>) at the end, and renamed it "names.json" (from "p022_names.txt") to make it a valid JSON file (and a JavaScript array).#
+    <script src="res/euler.js"></script>
+  </body>
+</html>

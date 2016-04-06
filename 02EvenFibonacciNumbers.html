@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+  <body onload="links('Even Fibonacci Numbers','2','sum')">
+<script id="script">// javascript
+var t1 = performance.now();
+for(var last = 1, current = 1, sum = 0, tmp = 0; current < 4e6; sum += current % 2 == 0 ? current : 0, tmp = current, current += last, last = tmp);
+var t2 = performance.now();
+</script>
+    ~Sums up Fibonacci sequence numbers from 1 to 4 million.~
+    #No notes#
+    <script src="res/euler.js"></script>
+  </body>
+</html>

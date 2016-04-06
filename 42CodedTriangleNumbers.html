@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <body onload="links('Coded Triangle Numbers', '42', 'numTriangleNums')">
+    <script src="res/XMath.js"></script>
+    <script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
+    <script id="script">// javascript
+var t1 = performance.now();
+var words = [];
+$.ajax({
+  "url": "res/triangleWords.json",
+  "dataType": "json",
+  "async": false,
+  "method": "get",
+  "success": function(data) {
+    words = data;
+  }
+});
+for(var i = 0, triangleNums = []; 0.5*Math.pow(i, 2) + 0.5*i < 14*26; triangleNums.push(0.5*Math.pow(i, 2) + 0.5*i), i++);
+for(var i = 0, numTriangleNums = 0; i < words.length; numTriangleNums += triangleNums.indexOf(numScore) >= 0 ? 1 : 0, i++)
+  for(var j = 0, numScore = 0; j < words[i].length; numScore += words[i].charCodeAt(j)-64, j++);
+var t2 = performance.now();
+</script>
+  ~Uses <a href="https://en.wikipedia.org/wiki/Memoization">memoization</a> of possible triangular numbers and finds the words from the JSON file that have a score (sum of the letter indeces) that is a <a href="https://en.wikipedia.org/wiki/Triangular_number">triangular number</a>.~
+  #JSON request counts as part of the execution time.#
+  #Cached triangle numbers only go up to 364 (26x14) letters, because the longest word is 14 letters long.#
+  #File of words slightly modified to become a valid JSON file.#
+  <script src="res/euler.js"></script>
+  </body>
+</html>

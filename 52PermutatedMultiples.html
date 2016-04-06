@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <body onload="links('Permutated Multiples','52','i')">
+  <script src="res/XMath.js"></script>
+<script id="script">// javascript
+var t1 = performance.now();
+var sorted = function(num) { return num.toString().split("").sort().join(); };
+for(var i = 1; !(parseInt(i.toString().substring(0, 1)) < 5 && sorted(i) == sorted(i*2) && sorted(i*3) == sorted(i*4) && sorted(i*5) == sorted(i*6) && sorted(i*2) == sorted(i*4) && sorted(i*2) == sorted(i*6)); i++);
+var t2 = performance.now();
+</script>
+	~Finds the smallest integer that has the same digits as its double, triple, quadruple, quintuple, and heptupal.~
+    #No notes#
+    <script src="res/euler.js"></script>
+  </body>
+</html>

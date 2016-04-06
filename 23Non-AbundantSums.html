@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <body onload="links('Non-Abundant Sums','23','nonAbundantSum')">
+    <script id="script">// javascript
+var t1 = performance.now();
+function isAbundant(num) {
+  for(var i = 1, sum = 0; i <= num/2; sum += num % i == 0 ? i : 0, i++);
+  return sum > num;
+}
+for(var i = 1, max = 28123, abundantNums = []; i <= max; abundantNums[i] = isAbundant(i) ? 1 : 0, i++);
+for(var i = 1, abundantSums = []; i <= max; i++)
+  for(var j = i; j <= max-i; abundantSums[i+j] = (i + j <= max && abundantNums[i] && abundantNums[j]) ? 1 : abundantSums[i+j], j++);
+for(var i = 0, nonAbundantSum = 0; i <= max; nonAbundantSum += !abundantSums[i] ? i : 0, i++);
+var t2 = performance.now();
+</script>
+    ~Finds all the <a href="https://oeis.org/A005101">abundant numbers</a> under 28123, finds the sums of them, and then returns the sums of the numbers that are <em>not</em> one of those abundant-number-sums.~
+    #No notes#
+    <script src="res/euler.js"></script>
+  </body>
+</html>

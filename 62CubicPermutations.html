@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <body onload="links('Cubic Permutations', '62', 'cubicPermutation')">
+	<script src="res/XMath.js"></script>
+    <script id="script">// javascript
+var t1 = performance.now();
+for(var i = 100, cubes = [], cubicPermutation = 0, sorted = "1000000"; i <= 10000; i++, sorted = (Math.pow(i, 3)).toString().split("").sort(function(a,b){return b-a;}).join(""))
+	if(cubes[sorted] == undefined)
+		cubes[sorted] = { num: Math.pow(i, 3), count: 1 };
+	else
+		if(++cubes[sorted].count == 5) {
+			cubicPermutation = cubes[sorted].num;
+			break;
+		}
+var t2 = performance.now();
+</script>
+  	~Finds the smallest cube who has five permutations that are also cubes.~
+  	#No notes#
+	<script src="res/euler.js"></script>
+  </body>
+</html>

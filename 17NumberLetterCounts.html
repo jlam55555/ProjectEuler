@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <body onload="links('Number Letter Counts','17','sum')">
+    <script id="script">// javascript
+var t1 = performance.now();
+function ones(o) {
+  switch(o) {
+    case 0: // e.g. ninety _
+      return 0;
+    case 1: // one
+    case 2: // two
+    case 6: // six
+      return 3;
+    case 4: // four
+    case 5: // five
+    case 9: // nine
+      return 4;
+    case 3: // three
+    case 7: // seven
+    case 8: // eight
+      return 5;
+  }
+}
+function teens(o) {
+  switch(o) {
+    case 0: // ten
+      return 3;
+    case 1: // eleven
+    case 2: // twelve
+      return 6;
+    case 5: // fifteen
+    case 6: // sixteen
+      return 7;
+    case 3: // thirteen
+    case 4: // fourteen
+    case 8: // eighteen
+    case 9: // nineteen
+      return 8;
+    case 7: // seventeen
+      return 9;
+  }
+}
+function tens(t, o) {
+  switch(t) {
+    case 0: // e.g. one hundred and _ two
+      return ones(o);
+    case 1:
+      return teens(o);
+    case 4: // forty
+    case 5: // fifty
+    case 6: // sixty
+      return 5 + ones(o);
+    case 2: // twenty
+    case 3: // thirty
+    case 8: // eighty
+    case 9: // ninety
+      return 6 + ones(o);
+    case 7: // seventy
+      return 7 + ones(o);
+  }
+}
+function hundreds(h, t, o) {
+  return 7 + ones(h) + ((t != 0 || o != 0) ? 3 : 0) + tens(t, o); // "three hundred and thirty two"
+}  
+for(var i = 1, numLength = 1, sum = 11; i <= 999; i++, numLength = i.toString().length)
+  if(numLength == 1)
+    sum += ones(i);
+  else if(numLength == 2)
+    sum += tens(Math.floor(i/10), i%10);
+  else
+    sum += hundreds(Math.floor(i/100), Math.floor(i/10)%10, i%10);
+var t2 = performance.now();
+</script>
+    ~Counts the letters of each whole number from 1 to 1000 (inclusive).~
+    #Use of "and" in spelling is in compliance with British English, as requested by the question.#
+    <script src="res/euler.js"></script>
+  </body>
+</html>

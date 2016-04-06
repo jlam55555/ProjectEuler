@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <body onload="links('Pentagon Numbers', '44', 'minDifference')">
+    <script src="res/XMath.js"></script>
+    <script id="script">// javascript
+var t1 = performance.now();
+for(var i = 1, pentagonal = []; i < 3000; i++)
+  pentagonal.push(1.5*Math.pow(i, 2) - 0.5*i);
+for(var i = 0, minDifference = 1e10; i < pentagonal.length; i++)
+  for(var j = i+1; j < pentagonal.length; minDifference = pentagonal.indexOf(pentagonal[i]+pentagonal[j]) >= 0 && pentagonal.indexOf(pentagonal[j]-pentagonal[i]) >= 0 && pentagonal[j]-pentagonal[i] < minDifference ? pentagonal[j]-pentagonal[i] : minDifference, j++);
+var t2 = performance.now();
+</script>
+  ~Finds the smallest difference between a pair of pentagonal numbers whose sum and difference are both also pentagonal numbers.~
+  #This takes an especially long time.#
+  #I chose the number 3000 because it fits the answer.#
+  <script src="res/euler.js"></script>
+  </body>
+</html>

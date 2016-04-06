@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <body onload="links('Pandigital Prime', '41', 'combos[i]')">
+    <script src="res/XMath.js"></script>
+    <script id="script">// javascript
+var t1 = performance.now();
+var findCombos = function(current, left) {
+  if(left.length == 0)
+    return current;
+  for(var i = 0, combos = []; i < left.length; combos = combos.concat(findCombos(current + left[i], left.slice(0, i).concat(left.slice(i+1, left.length)))), i++);
+  return combos;
+};
+for(var i = 0, combos = findCombos("", [1, 2, 3, 4, 5, 6, 7]).sort(function(a, b) { return b-a; }); i < combos.length && !XMath.isPrime(combos[i]); i++);
+var t2 = performance.now();
+</script>
+  ~Finds the largest pandigital prime.~
+  #It first calculates all the possible pandigital combinations, and then tests them (largest to smallest) for the first prime that appears. This is to avoid testing primality and pandigitalism of <em>every</em> number under 1,000,000,000 until a match was found.#
+  #I started with all numbers 1-9 and 1-8 in the <code>findCombos()</code> before I realized there were <em>no</em> primes in those ranges (the sum of numbers 1-9 and 1-8 are both divisible by 3, thus disallowing any primes). At seven digits long I discovered my first pandigital prime&em; and to my surprise and delight, because it takes exponentially longer to run the script for eight and nine digits.#
+  <script src="res/euler.js"></script>
+  </body>
+</html>

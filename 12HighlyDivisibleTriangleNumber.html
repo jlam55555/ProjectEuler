@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <body onload="links('Highly Divisible Triangle Number','12','triangleNum')">
+    <script src="res/bignumber.min.js"></script>
+    <script id="script">// javascript
+var t1 = performance.now();
+function numFactors(num) {
+  for(var i = 2, count = 2; i <= Math.sqrt(num); i++)
+    if(num % i == 0)
+      count += num / i == i ? 1 : 2;
+  return count;
+}
+for(var i = 0, triangleNum = 0; ; i++, triangleNum += i)
+  if(numFactors(triangleNum) > 500)
+    break;
+var t2 = performance.now();
+</script>
+    ~Finds triangular numbers and the number of divisors until one reaches over 500 divisors.~
+    #No notes#
+    <script src="res/euler.js"></script>
+  </body>
+</html>

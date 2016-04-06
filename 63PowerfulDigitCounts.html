@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <body onload="links('Powerful Digit Counts', '63', 'count')">
+	<script src="res/XMath.js"></script>
+	<script src="res/bignumber.min.js"></script>
+    <script id="script">// javascript
+var t1 = performance.now();
+BigNumber.config({ EXPONENTIAL_AT:500 });
+var count = 0;
+for(var i = 1; i < 10; i++) {
+	for(var j = 1; j < 22; j++) {
+		if(new BigNumber(i).pow(j).toString().length == j) {
+			console.log(i, j);
+			count++;
+		}
+	}
+}
+var t2 = performance.now();
+</script>
+  	~Description~
+  	#<code>BigNumber</code> library courtesy of <a href="https://github.com/MikeMcl/bignumber.js/">https://github.com/MikeMcl/bignumber.js/</a>.#
+	<script src="res/euler.js"></script>
+  </body>
+</html>

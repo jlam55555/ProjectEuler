@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <body onload="links('Distinct Powers','29','Object.keys(distinct).length')">
+    <script src="res/bignumber.min.js"></script>
+    <script id="script">// javascript
+var t1 = performance.now();
+BigNumber.config({EXPONENT_AT:500});
+for(var a = 2, distinct = {}; a <= 100; a++)
+  for(var j = 2; j <= 100; j++)
+    distinct[new BigNumber(a).pow(j).toString()] = 1;
+var t2 = performance.now();
+</script>
+    ~Stores powers <code>a<sup>n</sup></code> where <code>2 &lt; a &lt; 100</code> and <code>2 &lt; b &lt; 100</code>~
+    #<code>BigNumber</code> library courtesy of <a href="https://github.com/MikeMcl/bignumber.js/">https://github.com/MikeMcl/bignumber.js/</a>.#
+    #The answer is <code>Object.keys(distinct).length</code> because it is the number of unique keys in the <code>distinct</code> object.#
+    <script src="res/euler.js"></script>
+  </body>
+</html>

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <body onload="links('Champernowne\'s Constant', '40', 'product')">
+    <script src="res/XMath.js"></script>
+    <script id="script">// javascript
+var t1 = performance.now();
+for(var i = 1, n = ""; n.length <= 1e6; n += i, i++);
+var product = parseInt(n.substring(0, 1)) * parseInt(n.substring(9, 10)) * parseInt(n.substring(1e2-1, 1e2)) * parseInt(n.substring(1e3-1, 1e3)) * parseInt(n.substring(1e4-1, 1e4)) * parseInt(n.substring(1e5-1, 1e5)) * parseInt(n.substring(1e6-1, 1e6));
+var t2 = performance.now();
+</script>
+  ~Finds the product of the first, tenth, hundredth, thousandth, ten thousandth, hundred thousandth, and millionth decimals of <a href="https://en.wikipedia.org/wiki/Champernowne_constant">Champerowne's constant</a>.~
+  #No notes#
+  <script src="res/euler.js"></script>
+  </body>
+</html>

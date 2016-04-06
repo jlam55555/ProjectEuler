@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <body onload="links('Largest Prime Factor','3','i')">
+<script id="script">// javascript
+var t1 = performance.now();
+var dividend = 600851475143;
+function isPrime(num) {
+  for(var i = 2; i <= Math.sqrt(num); i++)
+    if(num % i == 0)
+      return false;
+  return true;
+}
+for(var i = Math.floor(Math.sqrt(dividend)); i > 0 && !(dividend % i == 0 && isPrime(i)); i--);
+var t2 = performance.now();
+</script>
+    ~Uses <a href="https://en.wikipedia.org/wiki/Trial_division">trial division</a> (a simple brute force primality tester) to find the largest prime factor of 600851475143.~
+    #No notes.#
+    <script src="res/euler.js"></script>
+  </body>
+</html>

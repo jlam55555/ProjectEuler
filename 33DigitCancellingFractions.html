@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <body onload="links('Digit Cancelling Fractions','33','denominator')">
+    <script id="script">// javascript
+var t1 = performance.now();
+for(var i = 10, numerator = 1, denominator = 1; i < 100; i++)
+  for(var j = i+1; j < 100; j++, j += i == j || i % 10 == 0 || j % 10 == 0 ? 1 : 0, correct = i/j, is = [ i%10, Math.floor(i/10) ], js = [ j%10, Math.floor(j/10) ], reduced = is[0] == js[0] ? is[1]/js[1] : is[0] == js[1] ? is[1]/js[0] : is[1] == js[0] ? is[0]/js[1] : is[1] == js[1] ? is[0]/js[0] : -1, numerator = reduced == correct ? numerator*i : numerator, denominator = reduced == correct ? denominator * j : denominator);
+denominator = (function(n,r){var u=function e(n,r){return r?e(r,n%r):n};return u=u(n,r),[n/u,r/u]})(numerator,denominator)[1];
+var t2 = performance.now();
+</script>
+    ~Finds the denominator of the simplified fraction product of the four possible incorrectly-solved correct fractions of two two-digit numbers less than one.~
+    #(Minified) <code>reduce()</code> function to simplify fraction courtesy of <a href="http://stackoverflow.com/a/4652513/2397327">this StackOverflow answer</a>.#
+    <script src="res/euler.js"></script>
+  </body>
+</html>

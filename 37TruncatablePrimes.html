@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <body onload="links('Truncatable Primes', '37', 'sum')">
+    <script src="res/XMath.js"></script>
+    <script id="script">// javascript
+var t1 = performance.now();
+function truncate(n) {
+  for(var i = 1, nString = n.toString(), nums = [parseInt(nString.substring(0, 1))]; i < nString.length; i++)
+    nums.push(parseInt(nString.substring(i, nString.length)), parseInt(nString.substring(0, i+1)));
+  return nums;
+} 
+for(var count = 0, i = 10, sum = 0; count < 11; count += allPrimes ? 1 : 0, sum += allPrimes ? i : 0, i++)
+  for(var j = 0, truncated = truncate(i), allPrimes = true; j < truncated.length; allPrimes = !XMath.isPrime(truncated[j]) ? false : allPrimes, j++);
+var t2 = performance.now();
+</script>
+  ~Finds the sum of all numbers whose all truncations (including itself) result in prime numbers.~
+  #No notes#
+  <script src="res/euler.js"></script>
+  </body>
+</html>

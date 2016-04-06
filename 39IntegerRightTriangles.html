@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <body onload="links('Integer Right Triangles', '39', 'max.num')">
+    <script src="res/XMath.js"></script>
+    <script id="script">// javascript
+var t1 = performance.now();
+for(var a = 1, solutions = [], max = { solutions: 0 }; a < 500; a++)
+  for(var b = 1; b < a; c = Math.sqrt(Math.pow(a, 2) + Math.pow(b, 2)), p = a + b + c, max = c % 1 == 0 && p < 1000 && (solutions[p] = solutions[p] ? solutions[p]+1 : 1) > max.solutions ? { num: p, solutions: solutions[p] } : max, b++);
+var t2 = performance.now();
+</script>
+  ~Finds the perimeter under 1000 with the greatest number of perfect Pythagorean primes.~
+  #No notes#
+  <script src="res/euler.js"></script>
+  </body>
+</html>

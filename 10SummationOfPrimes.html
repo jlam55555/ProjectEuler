@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <body onload="links('Summation of Primes','10','sum')">
+    <script src="res/bignumber.min.js"></script>
+    <script id="script">// javascript
+var t1 = performance.now();
+for(var i = 2, composites = [1,1], max = 2e6; i <= Math.sqrt(max); i++)
+  if(!composites[i])
+    for(var j = Math.pow(i, 2); j <= max; j += i)
+      composites[j] = 1;
+for(var i = 2, sum = 0; i < max; i++)
+  sum += composites[i] ? 0 : i;
+var t2 = performance.now();
+</script>
+    ~Sum primes under 2 million found using the Sieve of Eratosthenes.~
+    #Same ESieve from <a href="07TenThousandAndFirstPrime.html">Ten Thousand and First Primes</a>.#
+    <script src="res/euler.js"></script>
+  </body>
+</html>

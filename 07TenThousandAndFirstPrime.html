@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <body onload="links('10001st Prime','7','i')">
+<script id="script">// javascript
+var t1 = performance.now();
+for(var i = 2, composites = [1,1], max = 1.1e5; i <= Math.sqrt(max); i++)
+  if(!composites[i])
+    for(var j = Math.pow(i, 2); j <= max; j += i)
+      composites[j] = 1;
+for(var i = 0, count = 0; i < max; i++)
+  if(!composites[i])
+    if(++count == 10001)
+      break;
+var t2 = performance.now();
+</script>
+    ~This uses the <a href="https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes">Sieve of Eratosthenes</a> algorithm to get the primes up to a certain number (in this case, 110,000). It sieves first and counts later.~
+    #I chose the number 110,000 for times' sake because I know it is greater than the answer. Realistically, a larger, less specific number (such as one million) would also work.#
+    #An easier way to solve this would be to use the <a href="http://primes.utm.edu/lists/small/">Prime Pages</a>.#
+    <script src="res/euler.js"></script>
+  </body>
+</html>

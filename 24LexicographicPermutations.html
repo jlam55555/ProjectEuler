@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <body onload="links('Lexicoographic Permutations','24','nthNum')">
+    <script id="script">// javascript
+var t1 = performance.now();
+function factorial(num) {
+  for(var i = num-1, result = num; i > 0; i--)
+    result *= i;
+  return result;
+};
+for(var i = 0, digits = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], n = 1e6, nthNum = ""; i < 10; i++)
+  for(var j = 0; j < digits.length; j++)
+    if(factorial(digits.length-1) * (j+1) > n) {
+      nthNum += digits[j];
+      n %= (factorial(digits.length-1) * j);
+      digits.splice(j, 1);
+      break;
+    }
+var t2 = performance.now();
+</script>
+    ~Recursively finds the digit whose possible number ranges exceed the one-millionth index.~
+#I originally did this by hand (and with a calculator). Here was my work:<pre><code>/*
+
+0   1   2   3   4   5   6   7   8   9
+
+10  9   8   7   6   5   4   3   2   1
+    90
+        720
+            5040
+                30240
+                    151200
+                        604800
+                            1814400
+                                3628800
+                                    3628800
+0: 362880 possibilities: 362880
+1: 725760
+2: 1088640 X
+  0: 40320: 766080
+  1: 806400
+  3: 846700
+  4: 887040
+  5: 927360
+  6: 967680
+  7: 1008000 X
+    0: 5040: 972720
+    1: 977760
+    3: 982800
+    4: 987840
+    5: 992880
+    6: 997920
+    8: 1002960 X
+      0: 720: 998640
+      1: 999360
+      3: 1008080 X
+        0: 120: 999480
+        1: 999600
+        4: 999720
+        5: 999840
+        6: 999960
+        9: 1000080 X
+          0: 24: 999984
+          1: 1000008 X
+            0: 6: 999990
+            4: 999996
+            5: 1000002 X
+              0: 2: 999998
+              4: 1000000 X
+                0: 1: 999999
+                6: 1: 1000000 X
+                  0: 1: 1000000 X
+2783915406
+*/</code></pre> I was trying to find the number of possibilities for each number. After looking at some of the algorithms other people had used (in the Euler forums), I wrote the algorithm that does the same thing as what I was trying to do manually.#
+    <script src="res/euler.js"></script>
+  </body>
+</html>

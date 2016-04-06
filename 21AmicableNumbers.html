@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <body onload="links('Amicable Numbers','21','sum')">
+    <script id="script">// javascript
+var t1 = performance.now();
+function sumProperDivisors(num) {
+  for(var i = 1, sum = 0; i <= num/2; sum += num % i == 0 ? i : 0, i++);
+  return sum;
+}
+for(var i = 1, sum = 0; i < 10000; i++, sum += i != sumProperDivisors(i) && i == sumProperDivisors(sumProperDivisors(i)) ? i : 0);
+var t2 = performance.now();
+</script>
+    ~Finds and sums <a href="https://en.wikipedia.org/wiki/Amicable_numbers">amicable numbers</a> by calculating <a href="http://mathworld.wolfram.com/ProperDivisor.html">proper divisors</a> of all whole numbers under 10,000.~
+    #No notes#
+    <script src="res/euler.js"></script>
+  </body>
+</html>

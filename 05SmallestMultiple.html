@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <body onload="links('Smallest Multiple','5','product')">
+<script id="script">// javascript
+var t1 = performance.now();
+var factor = function(num) {
+  var factors = [], size = 20;
+  while(size--) factors.push(0);
+  for(var i = 2; i <= num; i++)
+    if(num % i == 0)
+      num /= i,
+      factors[i--]++;
+  return factors;
+};
+var factors = [], size = 20;
+while(size--) factors.push(0);
+for(var i = 0, iFactors = factor(i); i < 20; i++, iFactors = factor(i))
+  for(var j = 2; j < iFactors.length; j++)
+    factors[j] = Math.max(iFactors[j], factors[j]);
+for(var i = 2, product = 1; i < 20; i++)
+  product *= Math.pow(i, factors[i]);
+var t2 = performance.now();
+</script>
+    ~Calculates the <a href="http://www.math.com/school/subject1/lessons/S1U3L3DP.html">least common multiple</a> of all numbers under 20.~
+    #Old answer (a slow and brute-force method): <pre><code>// javascript
+(outer: for(var i = 1; ; i++)
+for(var j = 1; j <= 20; j++)
+  if(i%j != 0)
+    break;
+  else if(j == 20)
+    break outer;</code></pre>#
+    <script src="res/euler.js"></script>
+  </body>
+</html>

@@ -2,3 +2,4 @@ index.php
 .*
 *~
 !.gitignore
+res/getListing.php
